@@ -74,7 +74,7 @@ def mergePizza(cheeseboard, sliver):
 def printPizza(pizza):
     def f(d):
         s = []
-        for k in d:
+        for k in sorted(d.keys()):
             v = d[k]
             k = "%s:" % k
             k = k.ljust(15, " ")
