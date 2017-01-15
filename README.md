@@ -6,7 +6,8 @@ Disclaimer: This is not meant for serious usage. It has minimal error handling. 
 
 Sample usage:
 ```
-$ python berkeley_pizza_parser.py 
+$ python berkeley_pizza_parser.py pizza.json 
+$ python berkeley_pizza_printer.py pizza.json 
 --Today's Pizza--
 Cheeseboard:   Cremini mushroom, onion, mozzarella and Capricho de Cabra fresh goat cheese, garlic olive oil, parsley, oregano
 Sliver:        Fresh asparagus, crimini mushrooms, mozzarella, campo de Montalban cheese, gremolata & garlic olive oil
@@ -45,4 +46,4 @@ Sliver:        Juicy pineapple, red bell peppers, mozzarella, French feta cheese
 Works great as a cron:
 
 ```
-python berkeley_pizza_parser.py |  mail -s "[pizza] $(date --date=today +%Y-%m-%d) Pizza Report" -r 'pearce@cs.berkeley.edu' 'pearce@cs.berkeley.edu'
+python berkeley_pizza_printer.py pizza.json |  mail -s "[pizza] $(date --date=today +%Y-%m-%d) Pizza Report" -r 'pearce@cs.berkeley.edu' 'pearce@cs.berkeley.edu'

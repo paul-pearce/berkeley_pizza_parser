@@ -5,6 +5,7 @@ import dateutil.parser
 import json
 from datetime import date
 from datetime import datetime
+import sys
 
 class Pizza:
     url = None
@@ -106,7 +107,7 @@ def tagPizza(pizza):
             "meta": {
                         "source": "https://github.com/Paul-pearce/berkeley_pizza_parser",
                         "author": "Paul Pearce <pearce@cs.berkeley.edu>",
-                        "timestamp": datetime.now().isoformat(),
+                        "timestamp": datetime.utcnow().isoformat(),
                     },
         }
     return d
@@ -118,10 +119,21 @@ def jsonPizza(pizza):
 
     return json.dumps(pizza)
 
+def writePizza(pizza, filename):
+    # I want the trailing \n that json.dump() does not give.
+    f = open(filename, "w")
+    f.write(pizza)
+    f.write("\n")
+    f.close()
+
 if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print "Usage: python berkeley_pizza_parser.py output.json"
+        exit(-1)
+
     cheese = CheeseBoard().getMePizza()
     sliver = Sliver().getMePizza()
     pizza = mergePizza(cheese, sliver)
-    printPizza(pizza)
     taggedPizza = tagPizza(pizza)
-    j = jsonPizza(taggedPizza)
+    jsonPizza = jsonPizza(taggedPizza)
+    writePizza(jsonPizza, sys.argv[1])
