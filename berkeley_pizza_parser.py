@@ -4,6 +4,7 @@ import urllib2
 import dateutil.parser
 import json
 from datetime import date
+from datetime import datetime
 
 class Pizza:
     url = None
@@ -99,9 +100,28 @@ def printPizza(pizza):
         print "--%s--" % day.strftime("%A, %B %d")
         print f(pizza[day])
 
+def tagPizza(pizza):
+    d = {
+            "data": pizza,
+            "meta": {
+                        "source": "https://github.com/Paul-pearce/berkeley_pizza_parser",
+                        "author": "Paul Pearce <pearce@cs.berkeley.edu>",
+                        "timestamp": datetime.now().isoformat(),
+                    },
+        }
+    return d
+
+def jsonPizza(pizza):
+    for key in pizza["data"]:
+        pizza["data"][key.isoformat()] = pizza["data"][key]
+        del pizza["data"][key]
+
+    return json.dumps(pizza)
 
 if __name__ == "__main__":
     cheese = CheeseBoard().getMePizza()
     sliver = Sliver().getMePizza()
     pizza = mergePizza(cheese, sliver)
     printPizza(pizza)
+    taggedPizza = tagPizza(pizza)
+    j = jsonPizza(taggedPizza)
