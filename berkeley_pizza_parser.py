@@ -93,6 +93,8 @@ def printPizza(pizza):
     print "*********"
     
     for day in sorted(pizza.keys()):
+        if day <= today:
+            continue
         print
         print "--%s--" % day.strftime("%A, %B %d")
         print f(pizza[day])
