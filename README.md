@@ -14,14 +14,6 @@ Sliver:        Fresh asparagus, crimini mushrooms, mozzarella, campo de Montalba
 
 *********
 
---Monday, January 09--
-Cheeseboard:   None
-Sliver:        Fresh yellow & red bells, scallions, mozzarella, French feta cheese, black & green Kalamata olive tapenade.
-
---Tuesday, January 10--
-Cheeseboard:   Cremini mushroom, onion, mozzarella and Capricho de Cabra fresh goat cheese, garlic olive oil, parsley, oregano
-Sliver:        Fresh asparagus, crimini mushrooms, mozzarella, campo de Montalban cheese, gremolata & garlic olive oil
-
 --Wednesday, January 11--
 Cheeseboard:   Bartlett pear, caramelized onion, mozzarella and Dunbarton blue cheese,toasted Walnut, garlic olive oil, parsley
 Sliver:        Fresh corn, chile pasilla, yellow onions, mozzarella, French feta & garlic olive oil.
