@@ -35,6 +35,8 @@ class CheeseBoard(Pizza):
                     continue
             d = dateutil.parser.parse(day.find("div", {"class": "date"}).text).date()
             p = day.find("div", {"class": "menu"}).text.split(":")[1].strip()
+            if p.endswith("Salad"):
+                p = p[:-len("Salad")]
             ret[d] = p
         return ret
 

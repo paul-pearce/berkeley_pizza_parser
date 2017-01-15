@@ -8,7 +8,7 @@ Sample usage:
 ```
 $ python berkeley_pizza_parser.py 
 --Today's Pizza--
-Cheeseboard:   Cremini mushroom, onion, mozzarella and Capricho de Cabra fresh goat cheese, garlic olive oil, parsley, oreganoSalad
+Cheeseboard:   Cremini mushroom, onion, mozzarella and Capricho de Cabra fresh goat cheese, garlic olive oil, parsley, oregano
 Sliver:        Fresh asparagus, crimini mushrooms, mozzarella, campo de Montalban cheese, gremolata & garlic olive oil
 
 *********
@@ -18,23 +18,23 @@ Cheeseboard:   None
 Sliver:        Fresh yellow & red bells, scallions, mozzarella, French feta cheese, black & green Kalamata olive tapenade.
 
 --Tuesday, January 10--
-Cheeseboard:   Cremini mushroom, onion, mozzarella and Capricho de Cabra fresh goat cheese, garlic olive oil, parsley, oreganoSalad
+Cheeseboard:   Cremini mushroom, onion, mozzarella and Capricho de Cabra fresh goat cheese, garlic olive oil, parsley, oregano
 Sliver:        Fresh asparagus, crimini mushrooms, mozzarella, campo de Montalban cheese, gremolata & garlic olive oil
 
 --Wednesday, January 11--
-Cheeseboard:   Bartlett pear, caramelized onion, mozzarella and Dunbarton blue cheese,toasted Walnut, garlic olive oil, parsleySalad
+Cheeseboard:   Bartlett pear, caramelized onion, mozzarella and Dunbarton blue cheese,toasted Walnut, garlic olive oil, parsley
 Sliver:        Fresh corn, chile pasilla, yellow onions, mozzarella, French feta & garlic olive oil.
 
 --Thursday, January 12--
-Cheeseboard:   Artichoke heart, baby spinach, mozzarella and local Belfiore ricotta cheese, chive, lemon zest, parsleySalad
+Cheeseboard:   Artichoke heart, baby spinach, mozzarella and local Belfiore ricotta cheese, chive, lemon zest, parsley
 Sliver:        Roma tomatoes, red onions, mozzarella, aged asiago cheese, fresh herbs & garlic olive oil.
 
 --Friday, January 13--
-Cheeseboard:   Crushed tomato, red onion, mozzarella and BelGioioso aged Asiago cheese, garlic olive oil, parsley, oreganoSalad
+Cheeseboard:   Crushed tomato, red onion, mozzarella and BelGioioso aged Asiago cheese, garlic olive oil, parsley, oregano
 Sliver:        Roasted crimini mushrooms, yellow onions, mozzarella, fresh goat cheese, fresh herbs, chanterelle mushroom infused garlic olive oil.
 
 --Saturday, January 14--
-Cheeseboard:   Roasted potato, caramelized onion, mozzarella and Gruyere cheese, garlic olive oil, parsley, oreganoSalad
+Cheeseboard:   Roasted potato, caramelized onion, mozzarella and Gruyere cheese, garlic olive oil, parsley, oregano
 Sliver:        Roasted Yukon potatoes, onions, chile pasilla, mozzarella, Bulgarian feta cheese, limes, cilantro & garlic olive oil.
 
 --Sunday, January 15--
