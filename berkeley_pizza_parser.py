@@ -75,32 +75,6 @@ def mergePizza(cheeseboard, sliver):
         ret[key]["Cheeseboard"] = val
     return ret
 
-def printPizza(pizza):
-    def f(d):
-        s = []
-        for k in sorted(d.keys()):
-            v = d[k]
-            k = "%s:" % k
-            k = k.ljust(15, " ")
-            s.append("%s%s" % (k, v))
-        return "\n".join(s)
-    today = date.today()
-    print "--Today's Pizza--"
-    if today in pizza:
-        print f(pizza[today])
-    else:
-        print "None. :("
-   
-    print
-    print "*********"
-    
-    for day in sorted(pizza.keys()):
-        if day <= today:
-            continue
-        print
-        print "--%s--" % day.strftime("%A, %B %d")
-        print f(pizza[day])
-
 def tagPizza(pizza):
     d = {
             "data": pizza,
