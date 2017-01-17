@@ -35,10 +35,18 @@ def printPizza(pizza):
         print "--%s--" % day.strftime("%A, %B %d")
         print printWorker(pizza[day])
 
+def fixUTF8():
+    import codecs
+    if sys.stdout.encoding == None :
+        sys.stdout = codecs.getwriter('utf-8')(sys.stdout)
+    if sys.stderr.encoding == None :
+        sys.stderr = codecs.getwriter('utf-8')(sys.stderr)
+
 if __name__ == "__main__":
     if len(sys.argv) != 2:
         print "Usage: python berkeley_pizza_printer.py pizza.json"
         exit(-1)
-
+    
+    fixUTF8()
     jsonPizza = json.load(open(sys.argv[1]))
     printPizza(jsonPizza["data"])
