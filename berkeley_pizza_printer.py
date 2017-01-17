@@ -19,7 +19,7 @@ def printPizza(pizza):
 
     parseDates(pizza)
     today = date.today()
-    print "--Today's Pizza--"
+    print "--Today's Pizza (%s)--" % today.strftime("%A, %B %d")
     if today in pizza:
         print printWorker(pizza[today])
     else:
