@@ -51,7 +51,7 @@ class Sliver(Pizza):
         days = soup.findAll("div", {"class": "caption"})
         ret = {}
         for day in days:
-            if "PIZZA OF THE DAY" in day.text:
+            if "PIZZA" in day.text and "DAY" in day.text:
                 continue
             d = dateutil.parser.parse(day.contents[0].text).date()
             p = day.contents[1].strip()
