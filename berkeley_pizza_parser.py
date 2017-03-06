@@ -39,6 +39,8 @@ class CheeseBoard(Pizza):
             p = day.find("div", {"class": "menu"}).text.split(":")[1].strip()
             if p.endswith("Salad"):
                 p = p[:-len("Salad")]
+            if p.lower().startswith("new pizza") and p[len("new pizza")] != " ":
+                p = p[0:len("new pizza")] + " " + p[len("new pizza"):]
             ret[d] = p
         return ret
 
