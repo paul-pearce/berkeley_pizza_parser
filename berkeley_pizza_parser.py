@@ -98,7 +98,7 @@ def jsonPizza(pizza):
         pizza["data"][key.isoformat()] = pizza["data"][key]
         del pizza["data"][key]
 
-    return json.dumps(pizza)
+    return json.dumps(pizza, sort_keys=True, indent=4, separators=(',', ': '))
 
 def writePizza(pizza, filename):
     # I want the trailing \n that json.dump() does not give.
