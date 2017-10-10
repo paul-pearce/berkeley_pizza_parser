@@ -5,7 +5,7 @@ import sys
 
 def printPizza(pizza):
     def parseDates(d):
-        for key in d:
+        for key in d.keys():
             d[dateutil.parser.parse(key).date()] = d[key]
             del d[key] 
     def printWorker(d):
