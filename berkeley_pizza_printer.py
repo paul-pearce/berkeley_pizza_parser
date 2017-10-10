@@ -11,7 +11,7 @@ def printPizza(pizza):
     def printWorker(d):
         s = []
         for k in sorted(d.keys()):
-            v = d[k].title() if d[k] is not None else d[k]
+            v = d[k].title() if d[k] is not None and d[k].upper()==d[k] else d[k]
             k = "%s:" % k
             k = k.ljust(15, " ")
             s.append("%s%s" % (k, v))
