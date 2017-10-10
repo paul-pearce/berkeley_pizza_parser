@@ -94,7 +94,7 @@ def tagPizza(pizza):
     return d
 
 def jsonPizza(pizza):
-    for key in pizza["data"]:
+    for key in pizza["data"].keys():
         pizza["data"][key.isoformat()] = pizza["data"][key]
         del pizza["data"][key]
 
