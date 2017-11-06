@@ -53,7 +53,7 @@ class Sliver(Pizza):
         days = soup.findAll("div", {"class": "caption"})
         ret = {}
         for day in days:
-            skip_list = ["PIZZA", "OF THE DAY", "CLOSED", "Pizza of the", "Watch the games"]
+            skip_list = ["PIZZA", "OF THE DAY", "CLOSED", "Pizza of the", "Watch the games", "OPEN"]
             skip = False
             for item in skip_list:
                 if item in day.text:
