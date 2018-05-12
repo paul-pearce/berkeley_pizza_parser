@@ -36,6 +36,8 @@ class CheeseBoard(Pizza):
             if isinstance(day, BeautifulSoup.NavigableString):
                     continue
             d = dateutil.parser.parse(day.find("div", {"class": "date"}).text).date()
+            if not day.find("div", {"class": "menu"}).text:
+                continue
             p = day.find("div", {"class": "menu"}).text.split(":")[1].strip()
             if p.endswith("Salad"):
                 p = p[:-len("Salad")]
@@ -60,9 +62,18 @@ class Sliver(Pizza):
                     skip = True 
             if skip:
                 continue
-            d = dateutil.parser.parse(day.contents[0].text).date()
-            p = day.contents[1].strip()
-            ret[d] = p
+            try:
+                
+                try:
+                    d = dateutil.parser.parse(day.contents[0].text).date()
+                except:
+                    d = day.contents[0].text.split(", ")[1]
+                    d = dateutil.parser.parse(d).date()
+                p = day.contents[1].strip()
+                ret[d] = p
+            except:
+                print "Error on date: %s" % day.contents[0]
+                print day.contents
         return ret
 
 def mergePizza(cheeseboard, sliver):
