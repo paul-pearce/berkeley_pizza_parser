@@ -47,9 +47,10 @@ class CheeseBoard(Pizza):
         return ret
 
 class Sliver(Pizza):
-    def __init__(self):
+    def __init__(self, location):
         self.url = "http://sliverpizzeria.com/pizza/"
-    
+        self.location = location.lower()
+
     def parse(self):
         soup = bs(self.page)
         days = soup.findAll("div", {"class": "caption"})
@@ -62,10 +63,16 @@ class Sliver(Pizza):
                     skip = True 
             if skip:
                 continue
+            if self.location not in day.text.lower():
+                continue
             try:
-                
                 try:
-                    d = dateutil.parser.parse(day.contents[0].text).date()
+                    text = day.contents[0].text
+                    text = text.lower()
+                    text = text.replace("-", " ")
+                    text = text.replace(self.location, "")
+
+                    d = dateutil.parser.parse(text).date()
                 except:
                     d = day.contents[0].text.split(", ")[1]
                     d = dateutil.parser.parse(d).date()
@@ -76,21 +83,26 @@ class Sliver(Pizza):
                 print day.contents
         return ret
 
-def mergePizza(cheeseboard, sliver):
-    keys = sliver.keys() + cheeseboard.keys()
+def mergePizza(l):
+
+    labels = map(lambda s: s[0], l)
+    pizzas = map(lambda s: s[1], l)
+
+    keys = []
+    for item in pizzas:
+        keys += item.keys()
+
     keys = set(keys)
     ret = {}
     for key in keys:
         ret[key] = {}
-        val = None
-        if key in sliver:
-            val = sliver[key]
-        ret[key]["Sliver"] = val
+        
+        for i in xrange(0, len(pizzas)):
+            val = None
+            if key in pizzas[i]:
+                val = pizzas[i][key]
+            ret[key][labels[i]] = val
 
-        val = None
-        if key in cheeseboard:
-            val = cheeseboard[key]
-        ret[key]["Cheeseboard"] = val
     return ret
 
 def tagPizza(pizza):
@@ -124,8 +136,9 @@ if __name__ == "__main__":
         exit(-1)
 
     cheese = CheeseBoard().getMePizza()
-    sliver = Sliver().getMePizza()
-    pizza = mergePizza(cheese, sliver)
+    sliver_telegraph = Sliver("telegraph").getMePizza()
+    sliver_oakland = Sliver("oakland").getMePizza()
+    pizza = mergePizza([["Cheeseboard", cheese], ["Sliver Telegraph", sliver_telegraph], ["Sliver Oakland", sliver_oakland]])
     taggedPizza = tagPizza(pizza)
     jsonPizza = jsonPizza(taggedPizza)
     writePizza(jsonPizza, sys.argv[1])
