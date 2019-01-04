@@ -71,12 +71,11 @@ class Sliver(Pizza):
                     text = text.lower()
                     text = text.replace("-", " ")
                     text = text.replace(self.location, "")
-
                     d = dateutil.parser.parse(text).date()
                 except:
                     d = day.contents[0].text.split(", ")[1]
                     d = dateutil.parser.parse(d).date()
-                p = day.contents[1].strip()
+                p = day.contents[1].text.strip()
                 ret[d] = p
             except:
                 print "Error on date: %s" % day.contents[0]
@@ -136,9 +135,10 @@ if __name__ == "__main__":
         exit(-1)
 
     cheese = CheeseBoard().getMePizza()
+    sliver_shattuck = Sliver("shattuck").getMePizza()
     sliver_telegraph = Sliver("telegraph").getMePizza()
     sliver_oakland = Sliver("oakland").getMePizza()
-    pizza = mergePizza([["Cheeseboard", cheese], ["Sliver Telegraph", sliver_telegraph], ["Sliver Oakland", sliver_oakland]])
+    pizza = mergePizza([["Cheeseboard", cheese], ["Sliver Shattuck", sliver_shattuck], ["Sliver Telegraph", sliver_telegraph], ["Sliver Oakland", sliver_oakland]])
     taggedPizza = tagPizza(pizza)
     jsonPizza = jsonPizza(taggedPizza)
     writePizza(jsonPizza, sys.argv[1])

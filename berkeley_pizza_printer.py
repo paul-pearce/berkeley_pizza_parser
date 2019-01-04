@@ -10,7 +10,11 @@ def printPizza(pizza):
             del d[key] 
     def printWorker(d):
         s = []
-        for k in sorted(d.keys()):
+        keys = sorted(d.keys())
+        if "Sliver Oakland" in keys:
+            keys.remove("Sliver Oakland")
+            keys += ["Sliver Oakland",]
+        for k in keys:
             v = d[k].title() if d[k] is not None and d[k].upper()==d[k] else d[k]
             k = "%s:" % k
             k = k.ljust(20, " ")
