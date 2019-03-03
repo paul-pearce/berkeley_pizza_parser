@@ -48,38 +48,37 @@ class CheeseBoard(Pizza):
 
 class Sliver(Pizza):
     def __init__(self, location):
-        self.url = "http://sliverpizzeria.com/pizza/"
+        self.url = "https://www.sliverpizzeria.com/menu-weekly"
         self.location = location.lower()
 
     def parse(self):
         soup = bs(self.page)
-        days = soup.findAll("div", {"class": "caption"})
+        locations = soup.findAll("div", {"class": "summary-item-list-container sqs-gallery-container"})
+        location = None
+        for this_location in locations:
+            location_text = this_location.findAll("span", {"class": "summary-collection-title"})[0].text
+            if self.location not in location_text.lower(): 
+                continue
+            location = this_location
+
+        months = location.findAll("span", {"class": "summary-thumbnail-event-date-month"})
+        months = [x.text for x in months]
+
+        days = location.findAll("span", {"class": "summary-thumbnail-event-date-day"})
+        days = [x.text for x in days]
+        
+        dates = zip(months, days)
+        dates = [ "%s %s" % x for x in dates]
+        dates = [ dateutil.parser.parse(x).date() for x in dates]
+
+        pizzas = location.findAll("div", {"class": "summary-excerpt"})
+        pizzas = [ x.text for x in pizzas]
+
+        pairs = zip(dates, pizzas)
+
         ret = {}
-        for day in days:
-            skip_list = ["PIZZA", "OF THE DAY", "CLOSED", "Pizza of the", "Watch the games", "OPEN", "NOW OFFERING DESSERT!", "SLIVER FRESCAS"]
-            skip = False
-            for item in skip_list:
-                if item in day.text:
-                    skip = True 
-            if skip:
-                continue
-            if self.location not in day.text.lower():
-                continue
-            try:
-                try:
-                    text = day.contents[0].text
-                    text = text.lower()
-                    text = text.replace("-", " ")
-                    text = text.replace(self.location, "")
-                    d = dateutil.parser.parse(text).date()
-                except:
-                    d = day.contents[0].text.split(", ")[1]
-                    d = dateutil.parser.parse(d).date()
-                p = day.contents[1].text.strip()
-                ret[d] = p
-            except:
-                print "Error on date: %s" % day.contents[0]
-                print day.contents
+        for date, pizza in pairs:
+            ret[date] = pizza
         return ret
 
 def mergePizza(l):
@@ -137,8 +136,8 @@ if __name__ == "__main__":
     cheese = CheeseBoard().getMePizza()
     sliver_shattuck = Sliver("shattuck").getMePizza()
     sliver_telegraph = Sliver("telegraph").getMePizza()
-    sliver_oakland = Sliver("oakland").getMePizza()
-    pizza = mergePizza([["Cheeseboard", cheese], ["Sliver Shattuck", sliver_shattuck], ["Sliver Telegraph", sliver_telegraph], ["Sliver Oakland", sliver_oakland]])
+    sliver_oakland = Sliver("broadway").getMePizza()
+    pizza = mergePizza([["Cheeseboard", cheese], ["Sliver Shattuck", sliver_shattuck], ["Sliver Telegraph", sliver_telegraph], ["Sliver Broadway", sliver_oakland]])
     taggedPizza = tagPizza(pizza)
     jsonPizza = jsonPizza(taggedPizza)
     writePizza(jsonPizza, sys.argv[1])
